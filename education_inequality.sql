@@ -1,28 +1,32 @@
 -- EDA
+
 SELECT *
 FROM education_inequality_data;
 
+-- Number of schools by state
 SELECT state, COUNT(*) as school_count
 FROM education_inequality_data
 GROUP BY state
 ORDER BY school_count DESC;
 
+-- Number of schools by type(public, private, charter)
 SELECT school_type, COUNT(*) as count
 FROM education_inequality_data
 GROUP BY school_type;
 
+-- Number of schools by grade level (Elementary, Middle, High)
 SELECT grade_level, COUNT(*) as school_count
 FROM education_inequality_data
 GROUP BY grade_level
 ORDER BY school_count DESC;
 
+-- Min, mean, max of avg test scores
 SELECT MIN(avg_test_score_percent) as min_score, MAX(avg_test_score_percent) as max_score,
 	ROUND(AVG(avg_test_score_percent), 2) as avg_score
 FROM education_inequality_data;
 
--- top 10 schools
-WITH ranked_schools AS 
-(
+-- top 10 highest scoring schools
+WITH ranked_schools AS (
   SELECT school_name, state, avg_test_score_percent,
     RANK() OVER (ORDER BY avg_test_score_percent DESC) AS score_rank
   FROM education_inequality_data
@@ -31,9 +35,8 @@ SELECT *
 FROM ranked_schools
 WHERE score_rank <= 10;
 
--- bot 10 schools
-WITH ranked_schools AS 
-(
+-- bot 10 lowest scoring schools
+WITH ranked_schools AS (
   SELECT school_name, state, avg_test_score_percent,
     RANK() OVER (ORDER BY avg_test_score_percent ASC) AS score_rank
   FROM education_inequality_data
@@ -42,12 +45,14 @@ SELECT *
 FROM ranked_schools
 WHERE score_rank <= 10;
 
+-- schools with the lowest per-student funding
 SELECT school_name, state, funding_per_student_usd
 FROM education_inequality_data
 WHERE funding_per_student_usd IS NOT NULL
 ORDER BY funding_per_student_usd
 LIMIT 10;
 
+-- Average Test Score per school vs State Average
 WITH state_avg_scores AS 
 (
 SELECT state, ROUND(AVG(avg_test_score_percent), 2) AS avg_state_score
@@ -61,7 +66,7 @@ JOIN state_avg_scores AS s
     ON e.state = s.state
 ORDER BY score_diff_from_state_avg DESC;
 
--- State rankings 
+-- State rankings and performance summary
 SELECT state,
     COUNT(*) AS school_count,
     ROUND(AVG(avg_test_score_percent), 2) AS avg_test_score,
@@ -87,6 +92,8 @@ SELECT school_type, grade_level,
 FROM education_inequality_data
 GROUP BY school_type, grade_level
 ORDER BY school_type, grade_level;
+
+-- Summary table to move to tableau
 
 SELECT school_name, state, school_type, grade_level, avg_test_score_percent, funding_per_student_usd,
     student_teacher_ratio, percent_low_income, percent_minority, internet_access_percent, dropout_rate_percent,
