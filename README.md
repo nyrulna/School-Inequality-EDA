@@ -19,6 +19,8 @@ This project explores a dataset of U.S. schools using SQL to identify trends in 
   - Funding tier
   - Poverty level
   - Class size group
+
+ 
   ![Sample](https://github.com/user-attachments/assets/76fda4e4-9321-4d06-8a57-60e54ca496d5)
 
 ##  Key Queries
