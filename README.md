@@ -6,6 +6,11 @@ This project explores a dataset of U.S. schools using SQL to identify trends in 
 - Rank states based on performance and funding.
 - Categorize schools by various metrics for further potential visualization (Tableau).
 
+##  Tools Used
+
+- SQL (MySQL)
+- MySQL Workbench (or whichever tool you used)
+
 ##  SQL Overview
 
 - EDA
@@ -13,7 +18,9 @@ This project explores a dataset of U.S. schools using SQL to identify trends in 
   - Performance category (High/Average/Low)
   - Funding tier
   - Poverty level
-  - Class size grouping
+  - Class size group
+  -
+  ![Sample](https://github.com/user-attachments/assets/76fda4e4-9321-4d06-8a57-60e54ca496d5)
 
 ##  Key Queries
 
@@ -22,7 +29,4 @@ This project explores a dataset of U.S. schools using SQL to identify trends in 
 - Category-based summaries (e.g., by school type and grade level)
 - Tableau-ready summary output
 
-##  Tools Used
 
-- SQL (MySQL)
-- MySQL Workbench (or whichever tool you used)
