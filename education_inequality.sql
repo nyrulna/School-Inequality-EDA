@@ -87,3 +87,33 @@ SELECT school_type, grade_level,
 FROM education_inequality_data
 GROUP BY school_type, grade_level
 ORDER BY school_type, grade_level;
+
+SELECT school_name, state, school_type, grade_level, avg_test_score_percent, funding_per_student_usd,
+    student_teacher_ratio, percent_low_income, percent_minority, internet_access_percent, dropout_rate_percent,
+    -- Performance
+    CASE
+        WHEN avg_test_score_percent >= 80 THEN 'High Performing'
+        WHEN avg_test_score_percent >= 60 THEN 'Average Performing'
+        ELSE 'Low Performing'
+    END AS performance_category,
+    -- Funding
+    CASE
+        WHEN funding_per_student_usd < 10000 THEN 'Low Funding (<$10K)'
+        WHEN funding_per_student_usd < 20000 THEN 'Medium Funding ($10K-$20K)'
+        ELSE 'High Funding (>$20K)'
+    END AS funding_category,
+    -- Poverty
+    CASE
+        WHEN percent_low_income < 25 THEN 'Low Poverty (<25%)'
+        WHEN percent_low_income < 50 THEN 'Medium Poverty (25%-50%)'
+        WHEN percent_low_income < 75 THEN 'High Poverty (50%-75%)'
+        ELSE 'Very High Poverty (>75%)'
+    END AS poverty_category,
+    -- Class size
+    CASE
+        WHEN student_teacher_ratio < 15 THEN 'Small Classes (<15)'
+        WHEN student_teacher_ratio < 20 THEN 'Medium Classes (15-20)'
+        ELSE 'Large Classes (>20)'
+    END AS class_size_category
+
+FROM education_inequality_data;
