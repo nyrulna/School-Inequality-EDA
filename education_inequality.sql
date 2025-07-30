@@ -21,7 +21,8 @@ SELECT MIN(avg_test_score_percent) as min_score, MAX(avg_test_score_percent) as 
 FROM education_inequality_data;
 
 -- top 10 schools
-WITH ranked_schools AS (
+WITH ranked_schools AS 
+(
   SELECT school_name, state, avg_test_score_percent,
     RANK() OVER (ORDER BY avg_test_score_percent DESC) AS score_rank
   FROM education_inequality_data
@@ -31,7 +32,8 @@ FROM ranked_schools
 WHERE score_rank <= 10;
 
 -- bot 10 schools
-WITH ranked_schools AS (
+WITH ranked_schools AS 
+(
   SELECT school_name, state, avg_test_score_percent,
     RANK() OVER (ORDER BY avg_test_score_percent ASC) AS score_rank
   FROM education_inequality_data
