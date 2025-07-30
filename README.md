@@ -1,4 +1,4 @@
-This project explores a dataset of U.S. schools using SQL to identify trends in test scores, funding, poverty levels, and school types.
+This project is an EDA on a dataset of U.S. schools using SQL to identify trends in test scores, funding, poverty levels, and school types.
 
 ##  Objectives
 
