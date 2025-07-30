@@ -1,4 +1,4 @@
--- Trigger Github linguist
+-- Triggering GitHub Linguist re-index
 -- EDA
 
 SELECT *
