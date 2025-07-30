@@ -13,12 +13,10 @@ This project is an EDA on a dataset of U.S. schools using SQL to identify trends
 
 ##  SQL Overview
 
-- EDA
-- Included calculated fields for:
-  - Performance category (High/Average/Low)
-  - Funding tier
-  - Poverty level
-  - Class size group
+- Performance category (High/Average/Low)
+- Funding tier
+- Poverty level
+- Class size group
 
  
   ![Sample](https://github.com/user-attachments/assets/76fda4e4-9321-4d06-8a57-60e54ca496d5)
