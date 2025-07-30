@@ -1,4 +1,3 @@
--- Triggering GitHub Linguist re-index
 -- EDA
 
 SELECT *
